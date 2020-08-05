@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "enter rc.local!!!!!!"
+asic="1d1c"
+check_results=`lspci | grep 1d1c`
+if [[ $check_results =~ $asic ]]
+then
+    echo "success" >> /lspci_res
+else
+    echo "fail" >> /lspci_res
+fi
+~/reboot.sh &
+echo "rc.local done...."
+exit 0
+
