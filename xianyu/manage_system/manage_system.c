@@ -104,12 +104,15 @@ void delete()
     for(i=0; i<total_num; i++)
     {
         if(my_data[i].ZiZhi==level)
-            break;   /* 找到要删除的记录就退出 */
+        {
+            int j;
+            for(j=i;j < number_of_touziren - 1;j++)
+            {
+                memcpy(&my_data[j],&my_data[j+1],sizeof(data_t));/* 将后面的记录向前移 */
+            }
+            total_num--;
+            i--;
+        }
     }
-    for(;i < number_of_touziren - 1;i++)
-    {
-        memcpy(&my_data[i],&my_data[i+1],sizeof(data_t));/* 将后面的记录向前移 */
-    }
-    total_num--;
     return;
 }
